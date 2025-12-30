@@ -2,174 +2,653 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Happy Birthday Muqadas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Muqadas | Cinematic Celebration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        :root {
+            --gold: #FFD700;
+            --pink: #FF1493;
+            --purple: #9B30FF;
+            --blue: #00BFFF;
+            --dark-bg: #0a0a1a;
+            --overlay: rgba(10, 10, 26, 0.7);
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
-body{
-    height:100vh;
-    overflow:hidden;
-    background:black;
-    color:white;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
 
-/* BACKGROUND SLIDESHOW */
-.slideshow{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-}
-.slide{
-    position:absolute;
-    inset:0;
-    background-size:cover;
-    background-position:center;
-    opacity:0;
-    animation:slideShow 20s infinite;
-}
-.slide:nth-child(1){background-image:url(img1.jpg); animation-delay:0s;}
-.slide:nth-child(2){background-image:url(img2.jpg); animation-delay:5s;}
-.slide:nth-child(3){background-image:url(img3.jpg); animation-delay:10s;}
-.slide:nth-child(4){background-image:url(img4.jpg); animation-delay:15s;}
+        /* Background Slideshow */
+        #background-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
 
-@keyframes slideShow{
-    0%{opacity:0;}
-    10%{opacity:1;}
-    30%{opacity:1;}
-    40%{opacity:0;}
-}
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 20s linear;
+            transform: scale(1.1);
+        }
 
-/* DARK OVERLAY */
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.55);
-}
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
 
-/* CENTER TEXT */
-.center{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    text-align:center;
-    z-index:10;
-}
+        .slide.zooming {
+            transform: scale(1.15);
+        }
 
-h1{
-    font-family:Playfair Display;
-    font-size:55px;
-    background:linear-gradient(90deg,#ffd89b,#ff9a9e);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:glow 2s infinite alternate;
-}
+        .dark-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10, 10, 26, 0.85), rgba(10, 10, 26, 0.6));
+            z-index: 0;
+        }
 
-@keyframes glow{
-    from{text-shadow:0 0 10px gold;}
-    to{text-shadow:0 0 30px pink;}
-}
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+        }
 
-h2{margin-top:10px;font-size:28px;}
-p{max-width:520px;margin:20px auto;line-height:1.8}
+        /* Header */
+        header {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            animation: fadeInDown 2s ease-out;
+        }
 
-/* ISLAMIC DUA */
-.dua{
-    margin-top:25px;
-    font-size:18px;
-    animation:fadeUp 4s infinite;
-    color:#a8ffea;
-}
+        .birthday-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--gold), var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            letter-spacing: 1px;
+        }
 
-@keyframes fadeUp{
-    0%{opacity:0;transform:translateY(20px)}
-    50%{opacity:1}
-    100%{opacity:0;transform:translateY(-20px)}
-}
+        .birthday-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
 
-/* FIREWORKS */
-.firework{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:white;
-    border-radius:50%;
-    animation:explode 1.5s linear;
-}
+        /* Main Message */
+        .main-message {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 2.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
 
-@keyframes explode{
-    from{transform:scale(1);opacity:1}
-    to{transform:scale(20);opacity:0}
-}
+        .main-message::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--gold), var(--pink), var(--purple), var(--blue));
+            z-index: -1;
+            border-radius: 22px;
+            opacity: 0.3;
+        }
 
-/* HEARTS */
-.heart{
-    position:absolute;
-    font-size:18px;
-    animation:float 6s linear;
-}
-@keyframes float{
-    from{transform:translateY(100vh)}
-    to{transform:translateY(-10vh);opacity:0}
-}
-</style>
+        .message-text {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            font-weight: 400;
+            color: #fff;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .message-author {
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Dua Section */
+        .dua-section {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 3s ease-out;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--blue);
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+        }
+
+        .arabic-dua {
+            font-size: 2.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: 600;
+            direction: rtl;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .dua-translation {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #e6e6e6;
+            font-style: italic;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--pink), var(--purple));
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(155, 48, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(155, 48, 255, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+        }
+
+        .music-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--gold), var(--pink));
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 30px 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .heart {
+            color: var(--pink);
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* Fireworks Text */
+        .fireworks-text {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .fireworks-text.active {
+            opacity: 1;
+        }
+
+        .firework-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 0 0 20px currentColor;
+            background: linear-gradient(90deg, var(--gold), var(--pink), var(--blue), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            5% {
+                transform: scale(1.2);
+            }
+            10% {
+                transform: scale(1.1);
+            }
+            15% {
+                transform: scale(1.3);
+            }
+            50% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .confetti {
+            width: 12px;
+            height: 12px;
+            border-radius: 0;
+        }
+
+        .heart-particle {
+            color: var(--pink);
+            font-size: 20px;
+        }
+
+        .sparkle {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--gold);
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .birthday-title {
+                font-size: 3.5rem;
+            }
+            
+            .message-text {
+                font-size: 1.5rem;
+            }
+            
+            .arabic-dua {
+                font-size: 1.8rem;
+            }
+            
+            .dua-translation {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .birthday-title {
+                font-size: 2.8rem;
+            }
+            
+            .birthday-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .main-message, .dua-section {
+                padding: 25px;
+            }
+            
+            .firework-text {
+                font-size: 2.5rem;
+            }
+            
+            .music-player {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .birthday-title {
+                font-size: 2.2rem;
+            }
+            
+            .message-text {
+                font-size: 1.3rem;
+            }
+            
+            .arabic-dua {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<!-- MUSIC -->
-<audio autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<div class="slideshow">
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-</div>
-
-<div class="overlay"></div>
-
-<div class="center">
-    <h1>Happy Birthday</h1>
-    <h2>Muqadas 💖</h2>
-    <p>
-        You are my sister, my blessing, and my pride.
-        May Allah grant you happiness, health, and success always.
-    </p>
-
-    <div class="dua">
-        اللهم بارك لها في عمرها وحقق لها كل أحلامها  
-        <br>
-        <small>May Allah bless her life and fulfill her dreams</small>
+    <!-- Background Slideshow -->
+    <div id="background-slideshow">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80');"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+        <div class="dark-overlay"></div>
     </div>
-</div>
 
-<script>
-// HEARTS
-setInterval(()=>{
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="❤️";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-},300);
+    <!-- Fireworks Text Display -->
+    <div class="fireworks-text" id="fireworks-text">
+        <div class="firework-text" id="text1">🎉 Happy Birthday To You 🎉</div>
+        <div class="firework-text" id="text2">My Dear Sister Muqadas 💖</div>
+    </div>
 
-// FIREWORKS
-setInterval(()=>{
-    const f=document.createElement("div");
-    f.className="firework";
-    f.style.left=Math.random()*100+"vw";
-    f.style.top=Math.random()*100+"vh";
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),1500);
-},700);
-</script>
+    <!-- Main Content -->
+    <div class="container">
+        <header>
+            <h1 class="birthday-title">Happy Birthday Muqadas</h1>
+            <p class="birthday-subtitle">A Cinematic Celebration of Love and Joy</p>
+        </header>
 
-</body>
-</html>
+        <main>
+            <section class="main-message">
+                <p class="message-text">"You are not just my sister, you are my blessing, my strength, and my pride."</p>
+                <p class="message-author">— With all my love 💕</p>
+            </section>
+
+            <section class="dua-section">
+                <h2 class="section-title">Islamic Dua & Blessings</h2>
+                <div class="arabic-dua">
+                    اللهم بارك لها في عمرها، وارزقها الصحة والسعادة، وحقق لها كل ما تتمنى
+                </div>
+                <div class="dua-translation">
+                    "May Allah bless her life, grant her happiness and fulfill all her dreams."
+                </div>
+            </section>
+
+            <div class="controls">
+                <button class="btn" id="fireworks-btn">
+                    <i class="fas fa-fire"></i> Launch Fireworks
+                </button>
+                <button class="btn" id="confetti-btn">
+                    <i class="fas fa-birthday-cake"></i> More Confetti
+                </button>
+                <button class="btn" id="hearts-btn">
+                    <i class="fas fa-heart"></i> Send Love
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Created with <span class="heart">❤️</span> for the most amazing sister in the world</p>
+            <p>May your birthday be as wonderful as you are!</p>
+        </footer>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="music-btn" id="music-btn">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <audio id="birthday-music" loop>
+            <!-- We'll use a birthday music track from a free source -->
+            <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        // DOM Elements
+        const backgroundSlideshow = document.getElementById('background-slideshow');
+        const slides = document.querySelectorAll('.slide');
+        const fireworksText = document.getElementById('fireworks-text');
+        const text1 = document.getElementById('text1');
+        const text2 = document.getElementById('text2');
+        const fireworksBtn = document.getElementById('fireworks-btn');
+        const confettiBtn = document.getElementById('confetti-btn');
+        const heartsBtn = document.getElementById('hearts-btn');
+        const musicBtn = document.getElementById('music-btn');
+        const birthdayMusic = document.getElementById('birthday-music');
+        
+        // Background Slideshow Variables
+        let currentSlide = 0;
+        const slideCount = slides.length;
+        let slideInterval;
+        let zoomInterval;
+        
+        // Initialize the page
+        function init() {
+            // Start background slideshow
+            startSlideshow();
+            
+            // Start zoom effect on background
+            startZoomEffect();
+            
+            // Create initial particles
+            createParticles('confetti', 50);
+            createParticles('heart', 30);
+            createParticles('sparkle', 40);
+            
+            // Trigger fireworks on page load
+            setTimeout(() => {
+                triggerFireworks();
+            }, 1000);
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Try to autoplay music with user interaction
+            document.addEventListener('click', initAudio, { once: true });
+        }
+        
+        // Background Slideshow Functions
+        function startSlideshow() {
+            // Show first slide
+            slides[0].classList.add('active');
+            
+            // Change slide every 5 seconds
+            slideInterval = setInterval(() => {
+                // Remove active class from current slide
+                slides[currentSlide].classList.remove('active');
+                
+                // Move to next slide
+                currentSlide = (currentSlide + 1) % slideCount;
+                
+                // Add active class to new slide
+                slides[currentSlide].classList.add('active');
+            }, 5000);
+        }
+        
+        // Background zoom in/out effect
+        function startZoomEffect() {
+            let zoomDirection = 'in';
+            
+            zoomInterval = setInterval(() => {
+                const activeSlide = document.querySelector('.slide.active');
+                
+                if (zoomDirection === 'in') {
+                    activeSlide.classList.add('zooming');
+                    zoomDirection = 'out';
+                } else {
+                    activeSlide.classList.remove('zooming');
+                    zoomDirection = 'in';
+                }
+            }, 10000);
+        }
+        
+        // Fireworks Functions
+        function triggerFireworks() {
+            // Show fireworks text
+            fireworksText.classList.add('active');
+            
+            // Animate first text
+            setTimeout(() => {
+                text1.style.opacity = '1';
+                text1.style.transform = 'translateY(0)';
+                text1.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
+                
+                // Create fireworks around first text
+                createFireworksAroundElement(text1);
+            }, 500);
+            
+            // Animate second text
+            setTimeout(() => {
+                text2.style.opacity = '1';
+                text2.style.transform = 'translateY(0)';
+                text2.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
+                
+                // Create fireworks around second text
+                create
