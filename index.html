@@ -3,107 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Birthday Muqadas</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #1d2671, #c33764);
-        font-family: 'Poppins', sans-serif;
-        overflow: hidden;
-    }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{
+    height:100vh;
+    overflow:hidden;
+    background:black;
+    color:white;
+}
 
-    .card {
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(12px);
-        border-radius: 25px;
-        padding: 50px 40px;
-        max-width: 420px;
-        text-align: center;
-        color: #fff;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        animation: fadeIn 2s ease;
-    }
+/* BACKGROUND SLIDESHOW */
+.slideshow{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+}
+.slide{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    animation:slideShow 20s infinite;
+}
+.slide:nth-child(1){background-image:url(img1.jpg); animation-delay:0s;}
+.slide:nth-child(2){background-image:url(img2.jpg); animation-delay:5s;}
+.slide:nth-child(3){background-image:url(img3.jpg); animation-delay:10s;}
+.slide:nth-child(4){background-image:url(img4.jpg); animation-delay:15s;}
 
-    h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 42px;
-        margin-bottom: 10px;
-        background: linear-gradient(90deg, #ffd89b, #ff9a9e);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: glow 2s infinite alternate;
-    }
+@keyframes slideShow{
+    0%{opacity:0;}
+    10%{opacity:1;}
+    30%{opacity:1;}
+    40%{opacity:0;}
+}
 
-    h2 {
-        font-size: 22px;
-        font-weight: 400;
-        margin-bottom: 25px;
-    }
+/* DARK OVERLAY */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+}
 
-    p {
-        font-size: 15px;
-        line-height: 1.7;
-        opacity: 0.95;
-    }
+/* CENTER TEXT */
+.center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:10;
+}
 
-    .name {
-        font-size: 26px;
-        font-weight: 600;
-        margin: 20px 0;
-        color: #ffd89b;
-        letter-spacing: 1px;
-    }
+h1{
+    font-family:Playfair Display;
+    font-size:55px;
+    background:linear-gradient(90deg,#ffd89b,#ff9a9e);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:glow 2s infinite alternate;
+}
 
-    .heart {
-        font-size: 28px;
-        margin-top: 20px;
-        animation: heartbeat 1.5s infinite;
-        color: #ff9a9e;
-    }
+@keyframes glow{
+    from{text-shadow:0 0 10px gold;}
+    to{text-shadow:0 0 30px pink;}
+}
 
-    .decor {
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
-        border-radius: 50%;
-        top: -60px;
-        right: -60px;
-    }
+h2{margin-top:10px;font-size:28px;}
+p{max-width:520px;margin:20px auto;line-height:1.8}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-    }
+/* ISLAMIC DUA */
+.dua{
+    margin-top:25px;
+    font-size:18px;
+    animation:fadeUp 4s infinite;
+    color:#a8ffea;
+}
 
-    @keyframes glow {
-        from { text-shadow: 0 0 10px rgba(255,216,155,0.5); }
-        to { text-shadow: 0 0 25px rgba(255,154,158,0.9); }
-    }
+@keyframes fadeUp{
+    0%{opacity:0;transform:translateY(20px)}
+    50%{opacity:1}
+    100%{opacity:0;transform:translateY(-20px)}
+}
 
-    @keyframes heartbeat {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.3); }
-        100% { transform: scale(1); }
-    }
+/* FIREWORKS */
+.firework{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    animation:explode 1.5s linear;
+}
+
+@keyframes explode{
+    from{transform:scale(1);opacity:1}
+    to{transform:scale(20);opacity:0}
+}
+
+/* HEARTS */
+.heart{
+    position:absolute;
+    font-size:18px;
+    animation:float 6s linear;
+}
+@keyframes float{
+    from{transform:translateY(100vh)}
+    to{transform:translateY(-10vh);opacity:0}
+}
 </style>
 </head>
 
 <body>
 
-<div class="decor"></div>
+<!-- MUSIC -->
+<audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-<div class="card">
+<div class="slideshow">
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+</div>
+
+<div class="overlay"></div>
+
+<div class="center">
     <h1>Happy Birthday</h1>
-    <div class="name">Muqadas</div>
+    <h2>Muqadas 💖</h2>
+    <p>
+        You are my sister, my blessing, and my pride.
+        May Allah grant you happiness, health, and success always.
+    </p>
 
-    <h2>My Dear Sister 💖</h2>
+    <div class="dua">
+        اللهم بارك لها في عمرها وحقق لها كل أحلامها  
+        <br>
+        <small>May Allah bless her life and fulfill her dreams</small>
+    </div>
+</div>
+
+<script>
+// HEARTS
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},300);
+
+// FIREWORKS
+setInterval(()=>{
+    const f=document.createElement("div");
+    f.className="firework";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1500);
+},700);
+</script>
+
+</body>
+</html>    <h2>My Dear Sister 💖</h2>
 
     <p>
         May your life always be filled with happiness, success, and endless smiles.
